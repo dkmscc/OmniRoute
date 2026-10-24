@@ -1,9 +1,15 @@
 type CookieRecord = Record<string, unknown>;
 
 function cookiePairsFromJson(raw: string): string[] {
-  if (!raw.startsWith("{")) return [];
+  const trimmed = raw.trim();
+  if (!trimmed.startsWith("{") && !trimmed.startsWith("[")) return [];
   try {
-    const parsed = JSON.parse(raw) as CookieRecord;
+    const parsed = JSON.parse(trimmed);
+    if (Array.isArray(parsed)) {
+      return parsed
+        .filter((c) => c && typeof c === "object" && typeof c.name === "string" && typeof c.value === "string")
+        .map((c) => `${c.name}=${c.value}`);
+    }
     const cookies =
       parsed.cookies && typeof parsed.cookies === "object" && !Array.isArray(parsed.cookies)
         ? (parsed.cookies as CookieRecord)
