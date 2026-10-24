@@ -59,6 +59,33 @@ export interface GeminiWebModeDescriptor {
  * honest behavior for a model this module cannot yet select.
  */
 export const GEMINI_WEB_MODEL_MODES: Readonly<Record<string, GeminiWebModeDescriptor>> = {
+  "gemini-4-argon": {
+    id: "gemini-4-argon",
+    isDefault: false,
+    toggleSelector:
+      '[data-test-id="bard-mode-menu-button"], button[aria-haspopup="menu"][aria-label*="model" i], button[aria-haspopup="menu"]',
+    activeIndicatorSelector:
+      '[data-test-id="bard-mode-menu-button"] .mode-title, [data-test-id="bard-mode-menu-button"], button[aria-haspopup="menu"]',
+    expectedIndicatorPattern: /\b(argon|gemini[\s-]*4)\b/i,
+  },
+  "gemini-3.8-flash": {
+    id: "gemini-3.8-flash",
+    isDefault: false,
+    toggleSelector:
+      '[data-test-id="bard-mode-menu-button"], button[aria-haspopup="menu"][aria-label*="model" i], button[aria-haspopup="menu"]',
+    activeIndicatorSelector:
+      '[data-test-id="bard-mode-menu-button"] .mode-title, [data-test-id="bard-mode-menu-button"], button[aria-haspopup="menu"]',
+    expectedIndicatorPattern: /\b(3\.8\s*flash|flash)\b(?!.*lite)/i,
+  },
+  "gemini-3.5-flash-lite": {
+    id: "gemini-3.5-flash-lite",
+    isDefault: false,
+    toggleSelector:
+      '[data-test-id="bard-mode-menu-button"], button[aria-haspopup="menu"][aria-label*="model" i], button[aria-haspopup="menu"]',
+    activeIndicatorSelector:
+      '[data-test-id="bard-mode-menu-button"] .mode-title, [data-test-id="bard-mode-menu-button"], button[aria-haspopup="menu"]',
+    expectedIndicatorPattern: /flash.*lite|3\.5\s*flash/i,
+  },
   "gemini-3.1-pro": { id: "gemini-3.1-pro", isDefault: true },
   "gemini-3.7-flash": {
     id: "gemini-3.7-flash",
@@ -67,7 +94,7 @@ export const GEMINI_WEB_MODEL_MODES: Readonly<Record<string, GeminiWebModeDescri
       '[data-test-id="bard-mode-menu-button"], button[aria-haspopup="menu"][aria-label*="model" i]',
     activeIndicatorSelector:
       '[data-test-id="bard-mode-menu-button"] .mode-title, [data-test-id="bard-mode-menu-button"]',
-    expectedIndicatorPattern: /\bflash\b(?!.*\blite\b)/i,
+    expectedIndicatorPattern: /\bflash\b(?!.*lite)/i,
   },
   "gemini-3.1-flash-lite": {
     id: "gemini-3.1-flash-lite",
@@ -76,7 +103,7 @@ export const GEMINI_WEB_MODEL_MODES: Readonly<Record<string, GeminiWebModeDescri
       '[data-test-id="bard-mode-menu-button"], button[aria-haspopup="menu"][aria-label*="model" i]',
     activeIndicatorSelector:
       '[data-test-id="bard-mode-menu-button"] .mode-title, [data-test-id="bard-mode-menu-button"]',
-    expectedIndicatorPattern: /flash.*\blite\b/i,
+    expectedIndicatorPattern: /flash.*lite/i,
   },
 };
 
